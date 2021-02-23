@@ -1,0 +1,12 @@
+{
+  "type": "postgres",
+  "host": "bot-database-local",
+  "port": 5432,
+  "username": "tom",
+  "password": "myPassword",
+  "database": "postgres",
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "synchronize": true,
+  "logging": true
+
+}

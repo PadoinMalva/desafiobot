@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  bot-api-dev-local:
+    container_name: bot-api-dev-local
+    hostname: bot-api-dev-local
+    image: bot-api-dev-local
+    command: npm run start:debug
+    build: .
+    # env_file:
+    #   - ./devops/local-dev/.env.local-dev
+    restart: on-failure
+    volumes:
+      - .:/home/node/app
+    links:
+      - bot-database-local
+    depends_on:
+      - bot-database-local
+    ports:
+      - 4010:4010
+      - 9229:9229
+
+  bot-database-local:
+    hostname: bot-database-local
+    container_name: bot-database-local
+    image: postgres
+    # command: --default-authentication-plugin=mysql_native_password
+    restart: on-failure
+    ports:
+      - '5432:5432'
+    volumes:
+      - /tmp/postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=tom
+      - POSTGRES_PASSWORD=myPassword
+      - POSTGRES_DB=postgres_bot
+
+networks:
+  default:
+    external:
+      name: bot-network

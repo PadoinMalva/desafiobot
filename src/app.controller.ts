@@ -9,11 +9,11 @@ export class AppController {
 
   @Post()
   @HttpCode(201)
-  async createDealer(
-    @Body() dealer: CreateDealerRequest,
+  async createUser(
+    @Body() request: CreateDealerRequest,
   ): Promise<void> {
     
-    await this.appService.createDealer(dealer);
+    await this.appService.createUser(request);
   }
 
 

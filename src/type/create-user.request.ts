@@ -2,11 +2,13 @@ import { ApiProperty } from "@nestjs/swagger";
 
 
 export class CreateDealerRequest {
+
+  id: number
   @ApiProperty()
-  firstName: string;
+  name: string;
 
   @ApiProperty()
-  lastName: string;
+  surename: string;
 
   @ApiProperty()
   cpf: string;
@@ -14,6 +16,6 @@ export class CreateDealerRequest {
   @ApiProperty()
   email: string;
 
-  @ApiProperty()x
+  @ApiProperty()
   password: string;
 }
