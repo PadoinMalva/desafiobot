@@ -5,10 +5,12 @@ import { UserController } from './user/user.controller';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
+import { SalesModule } from './sales/sales.module';
+import { SalesController } from './sales/sales.controller';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(),UserModule, AuthModule],
-  controllers: [UserController],
+  imports: [TypeOrmModule.forRoot(),UserModule, AuthModule, SalesModule],
+  controllers: [UserController, SalesController],
   providers: [AuthService],
 })
 export class AppModule {
