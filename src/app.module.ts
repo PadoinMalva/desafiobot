@@ -7,11 +7,13 @@ import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
 import { SalesModule } from './sales/sales.module';
 import { SalesController } from './sales/sales.controller';
+import { SalesService } from './sales/sales.service';
+import { UserService } from './user/user.service';
 
 @Module({
   imports: [TypeOrmModule.forRoot(),UserModule, AuthModule, SalesModule],
   controllers: [UserController, SalesController],
-  providers: [AuthService],
+  providers: [AuthService,SalesService,UserService],
 })
 export class AppModule {
   constructor(private connection: Connection) {}

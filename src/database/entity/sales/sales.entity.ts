@@ -1,8 +1,9 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { UserEntity } from "../user/user.entity";
 
 @Entity()
 export class SalesEntity {
+
 @PrimaryGeneratedColumn()
 id: number;
 
@@ -19,6 +20,6 @@ date: string;
 status: string;
 
 
-@ManyToOne(type => UserEntity, user => user.sales)
-users: UserEntity;
+@ManyToOne(() => UserEntity, user => user.sales)
+user: UserEntity;
 }

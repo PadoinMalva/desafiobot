@@ -1,8 +1,7 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from 'src/database/entity/user/user.entity';
 import { CreateDealerRequest } from 'src/type/create-user.request';
-import { SignInRequest } from 'src/type/singin.request';
 import { FindOneOptions, Repository } from 'typeorm';
 
 
@@ -33,6 +32,15 @@ export class UserService {
     return this.usersRepository.findOne(ormOptions)
   }
 
+  async findByCpf(cpf:string, options: FindOneOptions<UserEntity> = {}): Promise<UserEntity>{
+    const ormOptions = options;
+    ormOptions.where = [
+      {
+        cpf,
+      },
+    ];
+    return this.usersRepository.findOne(ormOptions)
+  }
 
 
 }

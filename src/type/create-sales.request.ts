@@ -1,5 +1,4 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { StatusEnum } from "src/sales/enum/sales-status.enum";
 
 
 export class CreateSalesRequest {
@@ -15,7 +14,4 @@ export class CreateSalesRequest {
 
   @ApiProperty()
   cpf: string;
-
-  @ApiProperty()
-  status: StatusEnum;
 }

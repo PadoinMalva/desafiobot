@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 import { SalesEntity } from '../sales/sales.entity';
 
 @Entity()
@@ -21,6 +21,6 @@ email: string;
 @Column('varchar')
 password: string;
 
-@OneToMany(type => SalesEntity, sales => sales.users)
+@OneToMany(() => SalesEntity, sales => sales.user)
 sales: SalesEntity[];
 }
