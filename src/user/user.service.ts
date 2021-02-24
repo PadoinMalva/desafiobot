@@ -23,25 +23,16 @@ export class UserService {
     return this.usersRepository.save(request)
   }
 
-  async singIn(request: SignInRequest,options: FindOneOptions<UserEntity> = {}): Promise<UserEntity>{
+  async findByEmail(email:string, options: FindOneOptions<UserEntity> = {}): Promise<UserEntity>{
     const ormOptions = options;
     ormOptions.where = [
       {
-        email: request.email,
+        email: email,
       },
     ];
-
-    const user = await this.usersRepository.findOne(ormOptions)
-    console.log('user',user)
-    if(!user || user?.password !== request.password){
-      console.log('entreiiiiiii')
-      throw new UnauthorizedException(
-        'Unauthorized'
-      ); 
-    }
-
-
-    return 
+    return this.usersRepository.findOne(ormOptions)
   }
+
+
 
 }

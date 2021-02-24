@@ -1,5 +1,8 @@
-import { Body, Controller, Get, HttpCode, Post } from '@nestjs/common';
+import { Body, Controller, Request, HttpCode, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { AuthService } from 'src/auth/auth.service';
+import { LocalAuthGuard } from 'src/auth/local-auth.guard';
 import { CreateDealerRequest } from 'src/type/create-user.request';
 import { SignInRequest } from 'src/type/singin.request';
 import { UserService } from './user.service';
@@ -7,12 +10,13 @@ import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly customUserService: UserService) {}
+  constructor(private readonly customUserService: UserService,
+    private readonly customAuthService: AuthService) {}
 
 
-  @Post()
+  @Post('singup')
   @HttpCode(201)
-  async createUser(
+  async singUp(
     @Body() request: CreateDealerRequest,
   ): Promise<void> {
     
@@ -24,18 +28,12 @@ export class UserController {
     description: 'SingIn',
   })
   @ApiBody({type: SignInRequest})
-  @ApiResponse({})
+  @UseGuards(LocalAuthGuard)
   @HttpCode(200)
   @Post('signin')
-  async signIn(@Body() request: SignInRequest): Promise<any> {
-    console.log('request', request)
-    const user = await this.customUserService.singIn(request)
-    
-    // const user = await this.authService.validateUserPassword(
-    //   request.emailOrTelephone,
-    //   request.password
-    // );
-    // return this.authService.signIn(user);
+  async signIn(@Request() req): Promise<any> {
+    return this.customAuthService.login(req.user)
+
   }
 
 
