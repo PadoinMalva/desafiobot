@@ -3,7 +3,6 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateDealerRequest {
 
-  id: number
   @ApiProperty()
   name: string;
 

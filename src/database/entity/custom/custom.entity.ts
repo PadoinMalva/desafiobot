@@ -1,25 +1,25 @@
-// import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 
 
-// @Entity()
-// export class CustomEntity {
+@Entity()
+export class CustomEntity {
 
-//   @PrimaryGeneratedColumn()
-//   id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-//   @CreateDateColumn()
-//   createdAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 
-//   @Column('text')
-//   createdBy: string;
+  @Column('text')
+  createdBy: string;
 
-//   @CreateDateColumn()
-//   updatedAt?: Date;
+  @CreateDateColumn()
+  updatedAt?: Date;
 
-//   @Column('text')
-//   updatedBy?: string;
+  @Column('text')
+  updatedBy?: string;
 
 
   
-// }
+}
