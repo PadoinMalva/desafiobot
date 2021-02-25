@@ -50,6 +50,19 @@ export class SalesController {
     
   }
 
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/accumulatedCashBack')
+  @HttpCode(200)
+  async accumulatedCashBack(
+    // @Param('cpf') cpf: string
+  ): Promise<any> {
+    
+    return await this.customSalesService.accumulatedCashBack()
+    
+    
+  }
+
   @UseGuards(JwtAuthGuard)
   @Get(':cpf')
   @HttpCode(200)
@@ -61,4 +74,11 @@ export class SalesController {
     
     
   }
+
+
+
+
+ 
 }
+
+

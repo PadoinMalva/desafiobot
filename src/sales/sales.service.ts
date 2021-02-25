@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpService, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SalesEntity } from 'src/database/entity/sales/sales.entity';
 import { UserEntity } from 'src/database/entity/user/user.entity';
@@ -14,7 +14,8 @@ export class SalesService {
     @InjectRepository(SalesEntity)
     private salesRepository: Repository<SalesEntity>,
     @InjectRepository(UserEntity)
-    private usersRepository: Repository<UserEntity>
+    private usersRepository: Repository<UserEntity>,
+    private httpService: HttpService
   ) {}
 
   async createSale(request: CreateSalesRequest): Promise<SalesEntity>{
@@ -105,5 +106,27 @@ export class SalesService {
     ];
     return this.salesRepository.findOne(ormOptions)
   }
+
+
+  async accumulatedCashBack(): Promise<any> {
+    try {
+      const response = await this.httpService.get(`https://mdaqk8ek5j.execute-api.us-east-1.amazonaws.com/v1/cashback?cpf=12312312323`, {
+          params: {
+            cpf: '12312312323',
+          },
+          headers: {
+            Authorization: `token: ZXPURQOARHiMc6Y0flhRC1LVlZQVFRnm`,
+          },
+        },)
+        .toPromise();
+      return response.data
+    } catch (error) {
+      throw new Error("REQUEST_PROBLEM: accumulatedCashBack");
+      
+    }
+      
+  }
+
+  
 
 }
