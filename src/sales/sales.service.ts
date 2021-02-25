@@ -42,6 +42,22 @@ export class SalesService {
     await this.salesRepository.update(saleId, request)
   }
 
+  async listSale(cpf:string): Promise<any>{
+    const user = await this.findByCpf(cpf)
+    
+    if(!user){
+      throw new BadRequestException('Bad Request', 'Invalid_cpf');
+    }
+
+    
+    const response = []
+    for(const sale of user.sales){
+      const {percentCashback,cashback} =  await this.calcCashback(sale.value)
+      response.push({...sale, percentCashback, cashback })
+    }
+    return response
+  }
+
   async deleteSale(saleId: number): Promise<void>{
     const sale = await this.findBySale(saleId)
     console.log('saleeeee', sale)
@@ -59,9 +75,27 @@ export class SalesService {
         cpf: cpf,
       },
     ];
+    options.relations = ['sales']
     return this.usersRepository.findOne(ormOptions)
   }
 
+  async calcCashback(saleValue: number): Promise<{percentCashback : number,cashback: number}>{
+    if (saleValue <= 1000){
+      return {percentCashback : 10,
+              cashback: saleValue * 0.1
+      }}
+      else if (saleValue > 1500){
+        return {percentCashback : 20,
+                cashback: saleValue * 0.2
+        }
+      }
+      else{
+        return {percentCashback : 15,
+                cashback: saleValue * 0.15
+        }
+      }
+    }
+  
   async findBySale(saleId:number, options: FindOneOptions<SalesEntity> = {}): Promise<SalesEntity>{
     const ormOptions = options;
     ormOptions.where = [
