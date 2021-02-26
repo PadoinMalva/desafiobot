@@ -1,8 +1,9 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { CustomEntity } from '../custom/custom.entity';
 import { UserEntity } from '../user/user.entity';
 
 @Entity()
-export class SalesEntity {
+export class SalesEntity extends CustomEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -12,7 +13,7 @@ export class SalesEntity {
   @Column('int')
   value: number;
 
-  @Column('varchar')
+  @Column()
   date: string;
 
   @Column('varchar')

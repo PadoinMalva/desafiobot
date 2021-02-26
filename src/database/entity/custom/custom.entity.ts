@@ -1,8 +1,8 @@
 import {
-  Column,
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
@@ -13,12 +13,6 @@ export class CustomEntity {
   @CreateDateColumn()
   createdAt: Date;
 
-  @Column('text')
-  createdBy: string;
-
-  @CreateDateColumn()
+  @UpdateDateColumn()
   updatedAt?: Date;
-
-  @Column('text')
-  updatedBy?: string;
 }
