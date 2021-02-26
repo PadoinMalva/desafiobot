@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Test, TestingModule } from '@nestjs/testing';
 import { SalesService } from './sales.service';
 

@@ -1,28 +1,25 @@
-// import { Injectable } from '@nestjs/common';
-
-// @Injectable()
-// export class AuthService {}
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-// import { SignInRequest } from 'src/type/singin.request';
 import { UserService } from '../user/user.service';
-// import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private usersService: UserService,
-    private jwtService: JwtService) {}
+  constructor(
+    private usersService: UserService,
+    private jwtService: JwtService
+  ) {}
 
-  async validateUser(email: string, password:string): Promise<any> {
+  async validateUser(email: string, password: string): Promise<any> {
     const user = await this.usersService.findByEmail(email);
     if (user && user.password === password) {
-      const { password, ...result } = user;
+      const { ...result } = user;
       return result;
     }
     return null;
   }
 
-  async login(user: any) {
+  async login(user: any): Promise<any> {
     const payload = { username: user.username, sub: user.userId };
     return {
       access_token: this.jwtService.sign(payload),

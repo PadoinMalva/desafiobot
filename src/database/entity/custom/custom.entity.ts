@@ -1,10 +1,12 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
-
-
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class CustomEntity {
-
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -19,7 +21,4 @@ export class CustomEntity {
 
   @Column('text')
   updatedBy?: string;
-
-
-  
 }

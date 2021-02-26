@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { INestApplication } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
@@ -9,15 +10,13 @@ function apiDocument(app: INestApplication) {
       .setDescription('Desafio Boticario API')
       .setVersion('1.0')
       .addBearerAuth()
-      .build(),
-  )};
+      .build()
+  );
+}
 
-  export function setupSwaggerDocumentation(app: INestApplication) {
-    const completePath = (path?: string) =>
-      `api-documentation${path ? '/' + path : ''}`;
-  
- 
-  
-    SwaggerModule.setup('api', app, apiDocument(app));
-  }
-  
+export function setupSwaggerDocumentation(app: INestApplication): any {
+  const completePath = (path?: string) =>
+    `api-documentation${path ? `/${path}` : ''}`;
+
+  SwaggerModule.setup('api', app, apiDocument(app));
+}
