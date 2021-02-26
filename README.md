@@ -1,6 +1,6 @@
-## Desafio Boticário
+# Desafio Boticário
 
-##Framework Utilizado
+### Framework Utilizado
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
@@ -51,7 +51,7 @@ $ docker-compose up
 $ npm run test:cov
 ```
 
-##Utilizando a API
+## Utilizando a API
 acessar o swagger no caminho : http://localhost:4010/api/
 
 criar um revendedor utilizando o endpoint /user/singup (http://localhost:4010/api/#/User/UserController_singUp)
