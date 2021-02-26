@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from 'src/database/entity/user/user.entity';
+import { UserEntity } from '../database/entity/user/user.entity';
 import { CreateDealerRequest } from 'src/type/create-user.request';
 import { FindOneOptions, Repository } from 'typeorm';
+import { CreateUserResponse } from 'src/type/create-user.response';
 
 
 @Injectable()
@@ -19,8 +20,9 @@ export class UserService {
   }
 
   async createUser(request: CreateDealerRequest): Promise<UserEntity>{
-    return this.usersRepository.save(request)
-  }
+    const response: UserEntity = await this.usersRepository.save(request)
+    return response
+  } 
 
   async findByEmail(email:string, options: FindOneOptions<UserEntity> = {}): Promise<UserEntity>{
     const ormOptions = options;

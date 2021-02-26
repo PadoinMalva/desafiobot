@@ -1,9 +1,9 @@
 import { BadRequestException, HttpService, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { SalesEntity } from 'src/database/entity/sales/sales.entity';
-import { UserEntity } from 'src/database/entity/user/user.entity';
-import { CreateSalesRequest } from 'src/type/create-sales.request';
-import { EditSalesRequest } from 'src/type/edit-sales.request';
+import { SalesEntity } from '../database/entity/sales/sales.entity';
+import { UserEntity } from '../database/entity/user/user.entity';
+import { CreateSalesRequest } from '../type/create-sales.request';
+import { EditSalesRequest } from '../type/edit-sales.request';
 import { FindOneOptions, Repository } from 'typeorm';
 import { StatusEnum } from './enum/sales-status.enum';
 
