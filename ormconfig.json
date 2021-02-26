@@ -6,7 +6,6 @@
   "password": "myPassword",
   "database": "postgres",
   "entities": ["dist/**/*.entity{.ts,.js}"],
-  "synchronize": true,
-  "logging": true
+  "synchronize": true
 
 }

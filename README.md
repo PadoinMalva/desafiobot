@@ -1,3 +1,7 @@
+## Desafio Boticário
+
+##Framework Utilizado
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
@@ -24,52 +28,54 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
-
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Description
+Desafio da boticário para a criação de uma API
 
 ## Installation
 
 ```bash
-$ npm install
+$ docker-compose build
 ```
 
 ## Running the app
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+$ docker-compose up
 ```
 
 ## Test
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
 # test coverage
 $ npm run test:cov
 ```
 
-## Support
+##Utilizando a API
+acessar o swagger no caminho : http://localhost:4010/api/
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+criar um revendedor utilizando o endpoint /user/singup (http://localhost:4010/api/#/User/UserController_singUp)
+```bash
+# Create User Curl
+$ curl -d '{"name":"Daniel Padoin", "email":"teste@teste.com", "surename":"Teste", "cpf":35510116802, "password":"teste" }' -H "Content-Type: application/json" -X POST http://localhost:4010/user/signup
+```
+
+gerar um token no utilizando o endoint /user/signin (http://localhost:4010/api/#/User/UserController_signIn)
+```bash
+# Create User Curl
+curl -d '{"email":"teste@teste.com", "password":"teste" }' -H "Content-Type: application/json" -X POST http://localhost:4010/user/signin
+```
+
+utilizar o token para fazer as demais chamadas
+- http://localhost:4010/api/#/Sales/SalesController_registerSales registra uma compra para um revendedor 
+- http://localhost:4010/api/#/Sales/SalesController_editSales atualiza uma compra
+- http://localhost:4010/api/#/Sales/SalesController_deleteSales deleta uma compra
+- http://localhost:4010/api/#/Sales/SalesController_accumulatedCashBack consome a api desponibilizada pela boticário para mostrar o cashback acumulado
+- http://localhost:4010/api/#/Sales/SalesController_listUserSales lista todas as comprar de um revendedor
+
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [Daniel Padoin Malva](https://www.linkedin.com/in/daniel-malva-8a3715127/)
 
-## License
 
-  Nest is [MIT licensed](LICENSE).

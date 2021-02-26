@@ -1,15 +1,8 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  OneToMany,
-  Unique,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { CustomEntity } from '../custom/custom.entity';
 import { SalesEntity } from '../sales/sales.entity';
 
 @Entity()
-@Unique(['cpf'])
 export class UserEntity extends CustomEntity {
   @PrimaryGeneratedColumn()
   id: number;

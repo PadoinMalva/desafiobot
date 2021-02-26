@@ -23,7 +23,7 @@ export class UserController {
     private readonly customAuthService: AuthService
   ) {}
 
-  @Post('singup')
+  @Post('signup')
   @HttpCode(201)
   async singUp(@Body() request: CreateDealerRequest): Promise<UserEntity> {
     const response = await this.customUserService.createUser(request);

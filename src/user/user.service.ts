@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateDealerRequest } from 'src/type/create-user.request';
 import { FindOneOptions, Repository } from 'typeorm';
@@ -17,8 +17,12 @@ export class UserService {
   }
 
   async createUser(request: CreateDealerRequest): Promise<UserEntity> {
-    const response: UserEntity = await this.usersRepository.save(request);
-    return response;
+    try {
+      const response: UserEntity = await this.usersRepository.save(request);
+      return response;
+    } catch (error) {
+      throw new BadRequestException('Bad Request', 'Cant Duplicate cpf');
+    }
   }
 
   async findByEmail(
